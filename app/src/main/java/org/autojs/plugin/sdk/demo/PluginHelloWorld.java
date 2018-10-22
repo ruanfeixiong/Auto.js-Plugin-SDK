@@ -8,13 +8,13 @@ import org.autojs.plugin.sdk.Plugin;
 
 public class PluginHelloWorld extends Plugin {
 
-    public PluginHelloWorld(Object runtime, Object topLevelScope) {
-        super(runtime, topLevelScope);
+    public PluginHelloWorld(Context context, Context selfContext, Object runtime, Object topLevelScope) {
+        super(context, selfContext, runtime, topLevelScope);
     }
 
     @Override
     public String getAssetsScriptDir() {
-        return "autojs-plugin-scripts";
+        return "plugin-helloworld";
     }
 
     public String getStringFromJava() {

@@ -1,20 +1,25 @@
 package org.autojs.plugin.sdk;
 
+import android.content.Context;
 import android.support.annotation.Keep;
-import android.util.Log;
-
-import java.util.HashMap;
 
 @Keep
 public abstract class Plugin {
 
-
     private final Object mRuntime;
     private final Object mTopLevelScope;
+    private final Context mContext;
+    private final Context mSelfContext;
 
-    public Plugin(Object runtime, Object topLevelScope) {
+    public Plugin(Context context, Context selfContext, Object runtime, Object topLevelScope) {
         mRuntime = runtime;
         mTopLevelScope = topLevelScope;
+        mContext = context;
+        mSelfContext = selfContext;
+    }
+
+    public Context getSelfContext() {
+        return mSelfContext;
     }
 
     public Object getRuntime() {
@@ -23,6 +28,10 @@ public abstract class Plugin {
 
     public Object getTopLevelScope() {
         return mTopLevelScope;
+    }
+
+    public Context getContext() {
+        return mContext;
     }
 
     public abstract String getAssetsScriptDir();

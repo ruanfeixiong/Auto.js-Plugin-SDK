@@ -1,5 +1,6 @@
 package org.autojs.plugin.sdk;
 
+import android.content.Context;
 import android.support.annotation.Keep;
 import android.util.Log;
 
@@ -21,18 +22,18 @@ public abstract class PluginRegistry {
     }
 
     @Keep
-    public static Plugin load(String name, Object runtime, Object topLevelScope) {
+    public static Plugin load(String name, Context context, Context selfContext, Object runtime, Object topLevelScope) {
         PluginLoader pluginLoader = sPluginLoaders.get(name);
         Log.i(LOG_TAG, "load: name = " + name + ", loader = " + pluginLoader);
         if (pluginLoader == null) {
             return null;
         }
-        return pluginLoader.load(runtime, topLevelScope);
+        return pluginLoader.load(context, selfContext, runtime, topLevelScope);
     }
 
     @Keep
-    public static Plugin loadDefault(Object runtime, Object topLevelScope) {
-        return load(NAME_DEFAULT, runtime, topLevelScope);
+    public static Plugin loadDefault(Context context, Context selfContext, Object runtime, Object topLevelScope) {
+        return load(NAME_DEFAULT, context, selfContext, runtime, topLevelScope);
     }
 
     public static void registerPlugin(String name, PluginLoader loader) {
