@@ -21,9 +21,8 @@ public class PluginHelloWorld extends Plugin {
         return "Hello, Auto.js!";
     }
 
-    public void say(Context context, String message) {
-        context.startActivity(new Intent(Intent.ACTION_MAIN)
-                .setComponent(new ComponentName("org.autojs.plugin.sdk.demo", HelloWorldActivity.class.getName()))
+    public void say(String message) {
+        getSelfContext().startActivity(new Intent(getSelfContext(),  HelloWorldActivity.class)
                 .putExtra("message", message)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }

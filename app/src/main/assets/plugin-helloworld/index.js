@@ -9,7 +9,7 @@ module.exports = function(plugin){
     helloworld.stringFromJava = plugin.getStringFromJava();
 
     helloworld.say = function(message){
-        plugin.say(context, message);
+        plugin.say(message);
     }
 
     return helloworld;
